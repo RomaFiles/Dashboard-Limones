@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+}
+
+.sidebar {
+    width: 275px;
+    background-color: #1b396a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+}
+
+.logo {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.logo h3 {
+    margin-bottom: 5px;
+}
+
+.logo p {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.menu {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Estilo general */
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    position: relative;
+    border-left: 3px solid transparent; /* Línea oculta por defecto */
+    border-radius: 20px;
+}
+
+/* Hover (sin línea morada) */
+.menu-item:hover {
+    background-color: #1f2937;
+    color: #fff;
+}
+
+/* Activo (con línea morada a la izquierda) */
+.menu-item.active {
+    background-color: #374151;
+    color: #fff;
+    border-left: 3px solid #a78bfa; /* Línea morada */
+}
+
+/* Iconos y badges */
+.icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.badge {
+    background-color: #4b5563;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    margin-left: auto;
+}
+
+.profile {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #1f2937;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-info h3 {
+    font-size: 14px;
+    color: #fff;
+}
+
+.profile-info p {
+    font-size: 12px;
+    color: #9ca3af;
+}
