@@ -21,22 +21,29 @@ body {
 }
 
 .logo {
-    text-align: center;
+    display: flex;
+    align-items: center;
     color: #fff;
     margin-bottom: 20px;
 }
 
 .logo img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     margin-bottom: 10px;
+    margin-right: 20px;
 }
 
-.logo h3 {
+.logo-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container {
     margin-bottom: 5px;
 }
 
-.logo p {
+#logo-span {
     font-size: 12px;
     color: #9ca3af;
 }
@@ -60,17 +67,25 @@ body {
     border-radius: 20px;
 }
 
-/* Hover (sin línea morada) */
+.menu-item img {
+    transition: filter 0.3s ease;
+}
+
+/* Hover (sin línea blanca) */
 .menu-item:hover {
-    background-color: #1f2937;
-    color: #fff;
+    background-color: #f6f6f6;
+    color: #171512;
+}
+
+.menu-item:hover img {
+    filter: invert(1);
 }
 
 /* Activo (con línea morada a la izquierda) */
 .menu-item.active {
-    background-color: #374151;
+    background-color: #807e82;
     color: #fff;
-    border-left: 6px solid #a78bfa; /* Línea morada */
+    border-left: 6px solid #f6f6f6; /* Línea morada */
 }
 
 /* Iconos y badges */
@@ -80,8 +95,9 @@ body {
 }
 
 .badge {
-    background-color: #4b5563;
-    color: #fff;
+    background-color: #abd148;
+    color: #000;
+    font-weight: bold;
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 12px;
@@ -94,6 +110,7 @@ body {
     align-items: center;
     padding: 10px;
     border-top: 1px solid #1f2937;
+    position: relative;
 }
 
 .profile img {
@@ -111,4 +128,74 @@ body {
 .profile-info p {
     font-size: 12px;
     color: #9ca3af;
+}
+
+.profile-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.profile-menu-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.profile-menu {
+    width: 150px;
+    display: none;
+    position: absolute;
+    left: 200px;
+    bottom: 70%;
+    background-color: #f6f6f6;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0px 9px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.profile-menu a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #171512;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 10px;
+}
+
+.profile-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    filter: invert(1);
+    transition: filter 0.3s ease;
+}
+
+.profile-menu a:hover .profile-icon {
+    filter: invert(0);
+}
+
+.profile-menu a:hover {
+    background-color: #807e82;
+    border-radius: 10px;
+    color: #f6f6f6;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.profile-icon img {
+    filter: invert(1);
+    transition: background-color 0.3s;
+}
+
+.profile-icon:hover img {
+    filter: invert(0);
 }
