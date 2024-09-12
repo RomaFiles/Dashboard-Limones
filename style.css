@@ -81,13 +81,18 @@ body {
     filter: invert(1);
 }
 
-/* Activo (con línea morada a la izquierda) */
+/* Activo (con línea blanca a la izquierda) */
 .menu-item.active {
     background-color: #807e82;
     color: #fff;
     border-left: 6px solid #f6f6f6; /* Línea morada */
 }
 
+.menu-item.active:hover {
+    background-color: #f6f6f6;
+    color: #171512;
+    border-left: 6px solid #f6f6f6; /* Línea morada */
+}
 /* Iconos y badges */
 .icon {
     margin-right: 10px;
@@ -150,7 +155,7 @@ body {
     bottom: 70%;
     background-color: #f6f6f6;
     border: none;
-    border-radius: 10px;
+    border-radius: 0px;
     box-shadow: 0 0px 9px rgba(0, 0, 0, 0.2);
     z-index: 10;
 }
@@ -162,7 +167,7 @@ body {
     color: #171512;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
-    border-radius: 10px;
+    border-radius: 0px;
 }
 
 .profile-icon {
@@ -179,7 +184,7 @@ body {
 
 .profile-menu a:hover {
     background-color: #807e82;
-    border-radius: 10px;
+    border-radius: 0px;
     color: #f6f6f6;
 }
 
@@ -198,4 +203,9 @@ body {
 
 .profile-icon:hover img {
     filter: invert(0);
+}
+
+.profile .profile-menu img {
+    width: 24px;
+    height: 24px;
 }
