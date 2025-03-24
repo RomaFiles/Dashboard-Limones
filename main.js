@@ -186,9 +186,187 @@ function initDashboardAreaChart() {
   areaChart.setOption(options);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Since dashboard is the default active section, initialize its chart
+//---------- Calidad general de limones (Grade Gauge) ----------
+function initGaugeChart() {
+  // Seleccionar el contenedor del gráfico
+  const chartContainer = document.getElementById('gauge-chart');
+
+  // Verificar si el contenedor existe
+  if (!chartContainer) {
+    console.error('El contenedor del gráfico gauge no fue encontrado.');
+    return;
+  }
+
+  // Inicializar el gráfico
+  const gaugeChart = echarts.init(chartContainer);
+
+  // Configurar las opciones del gráfico
+  const options = {
+    title: {
+      text: 'Calidad general de limones',
+      left: 'center',
+    },
+    series: [
+      {
+        type: 'gauge',
+        startAngle: 180,
+        endAngle: 0,
+        center: ['50%', '75%'],
+        radius: '90%',
+        min: 0,
+        max: 100,
+        splitNumber: 10,
+        axisLine: {
+          lineStyle: {
+            width: 30,
+            color: [
+              [0.3, '#FF6E76'],  // Rojo para calidad baja
+              [0.7, '#FDDD60'],  // Amarillo para calidad media
+              [1, '#7CFFB2']     // Verde para calidad alta
+            ]
+          }
+        },
+        pointer: {
+          icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+          length: '12%',
+          width: 20,
+          offsetCenter: [0, '-60%'],
+          itemStyle: {
+            color: 'auto'
+          }
+        },
+        axisTick: {
+          length: 12,
+          lineStyle: {
+            color: 'auto',
+            width: 2
+          }
+        },
+        splitLine: {
+          length: 20,
+          lineStyle: {
+            color: 'auto',
+            width: 5
+          }
+        },
+        axisLabel: {
+          color: '#464646',
+          fontSize: 20,
+          distance: -60,
+          formatter: function (value) {
+            if (value === 0 || value === 100) {
+              return value + '%';
+            } else {
+              return '';
+            }
+          }
+        },
+        title: {
+          offsetCenter: [0, '-20%'],
+          fontSize: 20
+        },
+        detail: {
+          fontSize: 30,
+          offsetCenter: [0, '0%'],
+          valueAnimation: true,
+          formatter: function (value) {
+            return Math.round(value) + '%';
+          },
+          color: 'auto'
+        },
+        data: [
+          {
+            value: 85,
+            name: 'Calidad'
+          }
+        ]
+      }
+    ]
+  };
+
+  // Hacer que el gráfico sea responsivo
+  window.addEventListener('resize', function() {
+    gaugeChart.resize();
+  });
+
+  // Aplicar las opciones al gráfico
+  gaugeChart.setOption(options);
+}
+
+//---------- Limones procesados por meses (Nightingale Chart) ----------
+function initNightingaleChart() {
+  // Seleccionar el contenedor del gráfico
+  const chartContainer = document.getElementById('nightingale-chart');
+
+  // Verificar si el contenedor existe
+  if (!chartContainer) {
+    console.error('El contenedor del gráfico nightingale no fue encontrado.');
+    return;
+  }
+
+  // Inicializar el gráfico
+  const nightingaleChart = echarts.init(chartContainer);
+
+  // Configurar las opciones del gráfico
+  const options = {
+    title: {
+      text: 'Limones procesados por meses',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b}: {c} toneladas'
+    },
+    legend: {
+      top: 'bottom'
+    },
+    series: [
+      {
+        name: 'Limones procesados',
+        type: 'pie',
+        radius: ['30%', '80%'],
+        center: ['50%', '50%'],
+        roseType: 'area',
+        itemStyle: {
+          borderRadius: 8
+        },
+        data: [
+          { value: 40, name: 'Enero' },
+          { value: 38, name: 'Febrero' },
+          { value: 32, name: 'Marzo' },
+          { value: 30, name: 'Abril' },
+          { value: 28, name: 'Mayo' },
+          { value: 26, name: 'Junio' },
+          { value: 22, name: 'Julio' },
+          { value: 18, name: 'Agosto' },
+          { value: 15, name: 'Septiembre' },
+          { value: 25, name: 'Octubre' },
+          { value: 30, name: 'Noviembre' },
+          { value: 42, name: 'Diciembre' }
+        ]
+      }
+    ]
+  };
+
+  // Hacer que el gráfico sea responsivo
+  window.addEventListener('resize', function() {
+    nightingaleChart.resize();
+  });
+
+  // Aplicar las opciones al gráfico
+  nightingaleChart.setOption(options);
+}
+
+// Inicializar todos los gráficos del dashboard
+function initAllDashboardCharts() {
   initDashboardAreaChart();
+  initGaugeChart();
+  initNightingaleChart();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Since dashboard is the default active section, initialize all its charts
+  initAllDashboardCharts();
 });
 
 menuItems.forEach((item, index) => {
@@ -207,7 +385,7 @@ menuItems.forEach((item, index) => {
     if (contentSections[index].id === "batch-metrics") {
       initBatchMetricsChart(); // Llamar a la función para inicializar el gráfico
     } else if (contentSections[index].id === "dashboard") {
-      initDashboardAreaChart(); // Inicializar el gráfico de área en el dashboard
+      initAllDashboardCharts(); // Inicializar todos los gráficos del dashboard
     }
   });
 });
