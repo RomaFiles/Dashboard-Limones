@@ -1,0 +1,3 @@
+lemonqual.local {
+    reverse_proxy 10.31.1.255:5173
+}
